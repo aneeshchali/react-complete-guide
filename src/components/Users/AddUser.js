@@ -5,17 +5,27 @@ import Modal from "../UI/Modal";
 export default function AddUser(props) {
   const [enteredUserName, setUserName] = useState("");
   const [enteredAge, setAge] = useState("");
+  const [error, setError] = useState();
 
   const addUserHandler = (event) => {
     event.preventDefault();
 
     if (enteredUserName.trim().length === 0 || enteredAge.trim().length === 0) {
+      setError({
+        title: "Invalid Input",
+        message: "Please enter a valid name and age (non-empty values).",
+      });
       return;
     }
     if (+enteredAge < 0) {
+      setError({
+        title: "Invalid Age",
+        message: "Please enter a valid age (> 0).",
+      });
       return;
     }
     const UserData = {
+      key: Math.random(),
       username: enteredUserName,
       age: enteredAge,
     };
@@ -32,9 +42,19 @@ export default function AddUser(props) {
     setAge(event.target.value);
   };
 
+  const errorHandler = () => {
+    setError(null);
+  };
+
   return (
     <>
-      <Modal title="error" message="oh no"></Modal>
+      {error && (
+        <Modal
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
+        ></Modal>
+      )}
       <form className="form" onSubmit={addUserHandler}>
         <label htmlFor="username" id="down">
           Username

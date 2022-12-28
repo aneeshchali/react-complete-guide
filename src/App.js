@@ -3,10 +3,12 @@ import AddUser from "./components/Users/AddUser";
 import ShowUsers from "./components/Users/ShowUsers";
 let ListData = [
   {
+    key: "0",
     username: "amit",
     age: "32",
   },
   {
+    key: "1",
     username: "rahul",
     age: "30",
   },
@@ -19,7 +21,6 @@ function App() {
       return [data, ...ListData];
     });
   };
-
 
   return (
     <div>

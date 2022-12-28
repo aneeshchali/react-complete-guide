@@ -9,7 +9,7 @@ export default function ShowUsers(props) {
       <ul>
         {list.map((val) => {
           return (
-            <li>
+            <li key={val.key}>
               {val.username} ({val.age} Years old)
             </li>
           );
