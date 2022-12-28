@@ -1,11 +1,12 @@
 import React from "react";
-import "./ShowUsers.css";
+
+import Wrapper from "./Wrapper";
 
 export default function ShowUsers(props) {
   let list = props.Data;
   console.log(list);
   return (
-    <div className="list">
+    <Wrapper className="list">
       <ul>
         {list.map((val) => {
           return (
@@ -15,6 +16,6 @@ export default function ShowUsers(props) {
           );
         })}
       </ul>
-    </div>
+    </Wrapper>
   );
 }

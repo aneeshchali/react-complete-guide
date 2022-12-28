@@ -30,10 +30,10 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <AddUser DataSend={DataRecieved} />
       <ShowUsers Data={userList} DeleteList={DeleteList} />
-    </div>
+    </>
   );
 }
 
