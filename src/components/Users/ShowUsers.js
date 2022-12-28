@@ -9,7 +9,7 @@ export default function ShowUsers(props) {
       <ul>
         {list.map((val) => {
           return (
-            <li key={val.key}>
+            <li key={val.key} onClick={() => props.DeleteList(val.key)}>
               {val.username} ({val.age} Years old)
             </li>
           );

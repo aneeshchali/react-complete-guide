@@ -22,10 +22,17 @@ function App() {
     });
   };
 
+  const DeleteList = (value) => {
+    let NewList = userList.filter((val) => val.key !== value);
+    setuserList(NewList);
+    // console.log(ListData);
+    // setuserList(ListData);
+  };
+
   return (
     <div>
       <AddUser DataSend={DataRecieved} />
-      <ShowUsers Data={userList} />
+      <ShowUsers Data={userList} DeleteList={DeleteList} />
     </div>
   );
 }
