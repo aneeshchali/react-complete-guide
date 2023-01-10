@@ -9,6 +9,7 @@ const Counter = () => {
   const show = useSelector((state) => state.counter.showCounter);
 
   const toggleCounterHandler = () => {
+    console.log(counterActions);
     dispatch(counterActions.toggle());
   };
 

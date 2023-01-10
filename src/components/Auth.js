@@ -1,6 +1,6 @@
 import classes from "./Auth.module.css";
 import { useDispatch } from "react-redux";
-import { authActions } from "../store/authSlice.";
+import { authActions } from "../store/authSlice";
 
 const Auth = () => {
   const dispatch = useDispatch();
@@ -8,6 +8,7 @@ const Auth = () => {
   const loginHandler = (event) => {
     event.preventDefault();
     console.log("helloo");
+
     dispatch(authActions.login());
   };
 
