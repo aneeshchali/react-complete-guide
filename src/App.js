@@ -1,49 +1,45 @@
-import { Link, Route, Routes } from "react-router-dom";
-import Welcome from "./components/Welcome";
-import ErrorF from "./components/ErrorF";
-import Home from "./components/Home";
-import BookRoutes from "./BookRoutes";
+import { Route, Switch, Redirect } from "react-router-dom";
+
+import LoadingSpinner from "./components/ui/LoadingSpinner";
+
+import React from "react";
+import { Suspense } from "react";
+
+const NewQuote = React.lazy(() => import("./pages/NewQuote"));
+const AllQuotes = React.lazy(() => import("./pages/AllQuotes"));
+const QuoteDetail = React.lazy(() => import("./pages/QuoteDetail"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
+const Layout = React.lazy(() => import("./components/layout/Layout"));
 
 function App() {
-  // let element = useRoutes([
-  //   {
-  //     path: "/",
-  //     element: <Home />,
-  //   },
-  //   {
-  //     path: "*",
-  //     element: <ErrorF />,
-  //   },
-  //   {
-  //     path: "/welcome",
-  //     element: <Welcome />,
-  //   },
-  // ]);
-
   return (
-    <div>
-      <Routes>
-        <Route path="/products" element={<h2>Title</h2>} />
-        <Route path="/welcome" element={<h2>welcome Title</h2>} />
-      </Routes>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/products">PRODUCTS</Link>
-          </li>
-          <li>
-            <Link to="/welcome">Welcome</Link>
-          </li>
-        </ul>
-      </nav>
-      {/* {element} */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products/*" element={<BookRoutes />} />
-        <Route path="/welcome" element={<Welcome />} />
-        <Route path="*" element={<ErrorF />} />
-      </Routes>
-    </div>
+    <Suspense
+      fallback={
+        <div className="centered">
+          <LoadingSpinner />
+        </div>
+      }
+    >
+      <Layout>
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/quotes" />
+          </Route>
+          <Route path="/quotes" exact>
+            <AllQuotes />
+          </Route>
+          <Route path="/quotes/:quoteId">
+            <QuoteDetail />
+          </Route>
+          <Route path="/new-quote">
+            <NewQuote />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </Layout>
+    </Suspense>
   );
 }
 
