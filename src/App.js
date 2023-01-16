@@ -1,45 +1,25 @@
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom';
 
-import LoadingSpinner from "./components/ui/LoadingSpinner";
-
-import React from "react";
-import { Suspense } from "react";
-
-const NewQuote = React.lazy(() => import("./pages/NewQuote"));
-const AllQuotes = React.lazy(() => import("./pages/AllQuotes"));
-const QuoteDetail = React.lazy(() => import("./pages/QuoteDetail"));
-const NotFound = React.lazy(() => import("./pages/NotFound"));
-const Layout = React.lazy(() => import("./components/layout/Layout"));
+import Layout from './components/Layout/Layout';
+import UserProfile from './components/Profile/UserProfile';
+import AuthPage from './pages/AuthPage';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
-    <Suspense
-      fallback={
-        <div className="centered">
-          <LoadingSpinner />
-        </div>
-      }
-    >
-      <Layout>
-        <Switch>
-          <Route path="/" exact>
-            <Redirect to="/quotes" />
-          </Route>
-          <Route path="/quotes" exact>
-            <AllQuotes />
-          </Route>
-          <Route path="/quotes/:quoteId">
-            <QuoteDetail />
-          </Route>
-          <Route path="/new-quote">
-            <NewQuote />
-          </Route>
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
-      </Layout>
-    </Suspense>
+    <Layout>
+      <Switch>
+        <Route path='/' exact>
+          <HomePage />
+        </Route>
+        <Route path='/auth'>
+          <AuthPage />
+        </Route>
+        <Route path='/profile'>
+          <UserProfile />
+        </Route>
+      </Switch>
+    </Layout>
   );
 }
 

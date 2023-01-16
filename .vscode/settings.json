@@ -1,0 +1,8 @@
+{
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontVariations": false,
+  "editor.fontWeight": "normal",
+  "editor.fontSize": 14,
+  "workbench.colorTheme": "Default Dark+"
+}
